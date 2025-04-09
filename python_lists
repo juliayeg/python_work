@@ -243,7 +243,20 @@ def negate_first(L: list[list[int]], val: int):
       if subl[i] == val:
           subl[i] = -val
           return
+# Write the body of a function my_max(L) that consumes a non-empty list of any comparable type (such as all numbers or all strings) and returns the maximum value. 
+# Do not use the built-in sort method or the built-in max function. Use the less than and/or greater than [or equal to] operators to compare.
+def my_max(L: list[int|float]|list[str]) -> int|float|str:
+  """
+  Returns the maximum of L.
 
+  Requires: L is non-empty
+  
+  Examples:
+     my_max([1, 2.1, 3]) => 3
+     my_max(['oranges', 'apples', 'pears', 'bananas']) => 'pears'
+  """
+  ##YOUR CODE GOES HERE
+  pass
 
  
 
