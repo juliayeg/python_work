@@ -1,0 +1,28 @@
+# Write the body of a function is_palindrome(s) that consumes a string s and returns True if the string is a palindrome and False otherwise.
+# Recall that a string is a palindrome if and only if it is the same written forward as backwards.
+def is_palindrome(s: str) -> bool:
+  """
+  Returns True if s is a palindrome and False otherwise
+  
+  Examples:
+     is_palindrome("") => True
+     is_palindrome("banana") => False
+     is_palindrome("radar") => True
+  """
+  return s==s[::-1]
+# Write the body of a function sum_last_digits(L) that consumes a list of integers L and returns the sum of all the last digits in the list.
+def sum_last_digits(L: list[int]) -> int:
+  """
+  Returns the sum of all last digits of L
+  
+  Examples:
+     sum_last_digits([]) => 0
+     sum_last_digits([1, 2, 3]) => 6
+     sum_last_digits([15, 23, 44]) => 12
+  """
+  sum_ofl=0
+  for i in L:
+    sum_ofl+=i%10
+  return sum_ofl
+
+  
