@@ -243,7 +243,133 @@ def negate_first(L: list[list[int]], val: int):
       if subl[i] == val:
           subl[i] = -val
           return
+# Write the body of a function sum_last_digits(L) that consumes a list of integers L and returns the sum of all the last digits in the list.
+def sum_last_digits(L: list[int]) -> int:
+  """
+  Returns the sum of all last digits of L
+  
+  Examples:
+     sum_last_digits([]) => 0
+     sum_last_digits([1, 2, 3]) => 6
+     sum_last_digits([15, 23, 44]) => 12
+  """
+  sum_ofl=0
+  for i in L:
+    sum_ofl+=i%10
+  return sum_ofl
 
+# Write the body of a function my_max(L) that consumes a non-empty list of any comparable type (such as all numbers or all strings)
+# and returns the maximum value. Do not use the built-in sort method or the built-in max function. Use the less than and/or greater than [or equal to] operators to compare.
+def my_max(L: list[int|float]|list[str]) -> int|float|str:
+  """
+  Returns the maximum of L.
+
+  Requires: L is non-empty
+  
+  Examples:
+     my_max([1, 2.1, 3]) => 3
+     my_max(['oranges', 'apples', 'pears', 'bananas']) => 'pears'
+  """
+  max_value = L[0]
+    
+    # Iterate through the list starting from the second element
+    for item in L[1:]:
+        if item > max_value:
+            max_value = item
+    # Return the maximum value found
+    return max_value
+# Write the body of a function halve_evens_ret(L) 
+# that consumes a list of integers and returns a list where all the even numbers in L are halved.
+# You must use while loops in your solution. Do not use for loops. Do not mutate the list.
+def halve_evens_ret(L: list[int]) -> list[int]:
+  """
+  Returns a copy of L with all even numbers divided by 2
+  
+  Examples:
+     halve_evens_ret([]) => []
+     halve_evens_ret([1,3,5,7]) => [1,3,5,7]
+     halve_evens_ret([1,2,3,4]) => [1,1,3,2]
+  """
+    result = []
+    
+    # Initialize the index for the while loop
+    i = 0
+    
+    # Loop through the list using a while loop
+    while i < len(L):
+        if L[i] % 2 == 0:  # Check if the current element is even
+            result.append(L[i] // 2)  # Add halved value to the result list
+        else:
+            result.append(L[i])  # Add the original value if it's odd
+        i += 1  # Move to the next element
+    
+    return result
+# Write the body of a function halve_evens(L) that returns None and mutates L so that all even numbers in L are halved. You must use while loops in your solution. Do not use for loops.
+
+def halve_evens(L: list[int]) -> None:
+  """
+  Returns None and mutates L so that all even numbers are halved
+  
+  Effects: Mutates L
+  
+  Examples:
+     L = []
+     halve_evens(L) => None
+     and L is still []
+     
+     L = [1,3,5,7]
+     halve_evens(L) => None
+     and L is still [1,3,5,7]
+     
+     L = [1,2,3,4]
+     halve_evens(L) => None
+     and L has been mutated to [1,1,3,2]
+  """
+    # Initialize the index for the while loop
+    i = 0
+    
+    # Use a while loop to iterate through the list
+    while i < len(L):
+        if L[i] % 2 == 0:  # Check if the current element is even
+            L[i] = L[i] // 2  # Halve the even number and mutate the list
+        i += 1  # Move to the next element
+
+# Returns the sum of the smallest and largest elements.
+# Mutates the list so it is in reversed order.
+# Prints out the original list.
+def multi_purpose(L: list[int]) -> int:
+  """
+  Mutates the list L so it is in reversed order,
+  prints out the original list and returns
+  the sum of the largest and smallest elements.
+  
+  Effects: 
+     Prints to the screen
+     Mutates L
+  
+  Requires: L is non-empty.
+  
+  Example:
+    L = [1, 2, 3]
+    multi_purpose(L) => 4
+    L is mutated to [3, 2, 1] and [1, 2, 3] is printed.
+  """
+
+    # Make a copy of the original list to print it later
+    original_list = L[:]
+    
+    # Print the original list
+    print(original_list)
+    
+    # Reverse the list in-place
+    L.reverse()
+    
+    # Find the smallest and largest elements
+    smallest = min(L)
+    largest = max(L)
+    
+    # Return the sum of the smallest and largest elements
+    return smallest + largest
 
  
 
