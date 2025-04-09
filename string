@@ -24,5 +24,45 @@ def sum_last_digits(L: list[int]) -> int:
   for i in L:
     sum_ofl+=i%10
   return sum_ofl
+# 9. Write a function skip_letters(s, k) that returns a new string formed by taking one of every k characters from s (starting by including the first element).
+def skip_letters(s: str, k: int) -> str:
+  """
+  Returns every kth letter of s in a string
+  starting from the first character
+  
+  Requires: k > 0
+  
+  Examples:
+     skip_letters("", 3) => ""
+     skip_letters("a", 3) => "a"
+     skip_letters("banana", 2) => "bnn"
+  """
+  return s[::k]
+result=skip_letters("banana", 2)
+print(result)
+# 11. Write a function contains_consecutive_k_palindrome(s, k) that returns true if 
+# there is a string of k consecutive letters that is a palindrome and false otherwise. 
+# Recall that a palindrome is a string that is the same in reverse as in the forward direction.
+def contains_consecutive_k_palindrome(s: str, k: int) -> bool:
+  """
+  Returns whether or not s contains string of
+  k consecutive letters that form a palindrome
+  
+  Requires: k > 0
+  
+  Examples:
+     contains_consecutive_k_palindrome("", 1) => False
+     contains_consecutive_k_palindrome("a", 1) => True
+     contains_consecutive_k_palindrome("asdf", 2) => False
+     contains_consecutive_k_palindrome("banana", 3) => True
+  """
+  if len(s) < k:
+      return False
 
+  for i in range(len(s) - k + 1):
+      substring = s[i:i + k]
+      if substring == substring[::-1]: 
+          return True 
+
+  return False  
   
