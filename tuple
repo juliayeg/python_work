@@ -1,0 +1,112 @@
+# Write a function sum_integers(t) that consumes a tuple consisting of any types of values and returns the sum of all integer
+def sum_integers(t: tuple) -> int:
+  """
+  Returns the sum of all integers in t
+  
+  Examples:
+     sum_integers(()) => 0
+     sum_integers(("hi", 5.4, True)) => 0
+     sum_integers((2, "apple", 4, 6, 8, (1,), "23")) => 20
+  """
+  total = 0  
+  for item in t: 
+      if isinstance(item, int) and not isinstance(item, bool): 
+          total += item  
+  return total  
+
+# Write the body of a function find_all_subs(s, sub) that consumes a string s and a non-empty string sub and produces a tuple of all indices in s where sub can be found.
+def find_all_subs(s: str, sub: str) -> tuple[int, ...]:
+  """
+  Returns a list of positions in s where sub can be found.
+
+  Requires:
+     sub != ''
+  
+  Examples:
+     find_all_subs("", "a") => ()
+     find_all_subs("aaa", "a") => (0, 1, 2)
+     find_all_subs("banana", "an") => (1, 3)
+  """
+  indices = ()
+  pos = 0
+  while pos <= len(s) - len(sub):  
+      if s[pos:pos + len(sub)] == sub:
+          indices += (pos,)
+      pos += 1
+  return indices
+result=find_all_subs("aaa", "a")
+print(result
+# Write the body of a function longest_string(t) which consumes a non-empty tuple of strings and returns the 
+# longest string by length or the first one if there are multiple such strings. Use for loops. Note while loops are banned for this problem.
+def longest_string(t: tuple[str, ...]) -> str:
+  """
+  Returns the longest string
+  
+  Requires:
+     len(t) > 0
+  
+  Examples:
+     longest_string(("",)) => ""
+     longest_string(("banana", "apple")) => "banana"
+     longest_string(("banana", "apples")) => "banana"
+  """
+  longest=t[0]
+  for string in t:
+    if len(string) > len(longest):
+     longest= string
+  return longest
+result=longest_string(("banana", "apple"))
+print(result)
+
+# Write the body of a function count_ending(t, digit) which consumes a non-empty tuple of integers t and a single integer digit between 0 and 9 and returns
+# a count of the number of values in t that end with digit. Use while loops. Note that for loops are banned for this problem.
+def count_ending(t: tuple[int, ...], digit: int) -> int:
+  """
+  Returns the number of values in t
+  that end with digit
+  
+  Requires: 0 <= digit <= 9
+  
+  Examples:
+     count_ending((), 3) => 0
+     count_ending((13,), 3) => 1
+     count_ending((13, 11, 51, 12, 66, 64, 35, 7, 99999999), 1) => 2
+  """
+  count=0
+  pos =0
+
+  while pos < len(t):
+    last_digit=t[pos] % 10
+    if last_digit == digit:
+       count=count+1
+    pos=pos+1
+  return count
+result=count_ending((13, 11, 51, 12, 66, 64, 35, 7, 99999999),1)
+print(result)
+import check
+check.expect("T1", count_ending((13,), 3), 1)
+# Write the body of a function even_product(t) which consumes a non-empty tuple of integers t and returns the product of all even values in t. The product should be 1 if no even numbers are present.
+def even_product(t: tuple[int, ...]) -> int:
+  """
+  Returns the product of all even numbers in t
+  
+  Examples:
+     even_product(()) => 1
+     even_product((11,)) => 1
+     even_product((11,2)) => 2
+     even_product((2, 3, 4, 5, 6, 7, 8)) => 384
+  """
+  product=1
+  pos=0
+  while pos < len(t):
+    if t[pos]% 2==0:
+      product=product*t[pos]
+    pos=pos+1
+  return product
+result=even_product((2, 3, 4, 5, 6, 7, 8))
+print(result)
+
+import check
+check.expect("t1",even_product((2, 3, 4, 5, 6, 7, 8)),384)
+check.expect("t2",even_product(()),1)
+check.expect("t3",even_product((11,2)),2)
