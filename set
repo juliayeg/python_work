@@ -1,0 +1,54 @@
+# Without using == for sets and using only the methods above, write a function my_equals(S, T) which determines whether or not two sets S and T are equal.
+def my_equals(S: set, T: set):
+  """
+  Returns True if S and T are equal and False otherwise
+  
+  Examples:
+     my_equals(set(), set()) => True
+     my_equals(set(), {1}) => False
+     my_equals({1}, set()) => False
+  """
+    return S.issubset(T) and T.issubset(S) and len(S) == len(T)
+
+   # Write a function almost_equal which consumes two sets of integers S and T and returns True if the sets are almost equal and False otherwise. 
+   # Two sets of integers are said to be almost equal if and only if every element in one set is within one (either higher or lower) of some element in the other set and vice versa.
+   def almost_equal(S: set[int], T: set[int]) -> bool:
+    """
+    Returns True if S and T are almost equal and False otherwise
+    
+    Examples:
+       almost_equal(set(), set()) => True
+       almost_equal({1}, set()) => False
+       almost_equal({2, 4, 6, 8}, {7, 5, 3}) => True
+    """
+    # Case 1: If both sets are empty, they are trivially almost equal
+    if not S and not T:
+        return True
+    
+    # Case 2: For each element in S, check if there is a corresponding element in T
+    for s in S:
+        if not any(abs(s - t) <= 1 for t in T):
+            return False
+    
+    # Case 3: For each element in T, check if there is a corresponding element in S
+    for t in T:
+        if not any(abs(t - s) <= 1 for s in S):
+            return False
+    
+    return True
+
+    # Write a function is_distinct(L) which consumes a list of any immutable values L and returns True if the list has no duplicates and False otherwise. Hint: This function is extremely short with sets!
+    #A set is a collection of unique elements, meaning it will automatically remove any duplicates. If we convert the list L into a set and compare its length to the length of the original list, we can determine if there were any duplicates:
+def is_distinct(L: list) -> bool:
+  """
+  Returns True if elements in L are distinct and 
+  False otherwise.
+  
+  Requires: Elements in L are immutable.
+  
+  Examples:
+     is_distinct([]) => True
+     is_distinct([1, 1, 3]) => False
+  """
+  ##YOUR CODE GOES HERE
+  return len(L) == len(set(L)) 
