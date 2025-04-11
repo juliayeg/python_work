@@ -1,0 +1,23 @@
+# Write the body of a function key(d, v) that consumes a non-empty dictionary d and a value v of any type and returns the key in d whose value is v. 
+# You may assume that there is at most one key in d that has this value v.
+# Your function should return None if no such key is found. Do not mutate the passed parameter.
+from typing import Any, TypeVar
+X = TypeVar('X') 
+
+
+def key(d: dict[X, Any], v: Any) -> X|None:
+  '''
+  Returns the key k corresponding to d[k] == v
+  or None if no such key exists
+  
+  Requires: 
+     At most one key k satisfying d[k] == v
+  
+  Examples:
+     key({0: 'zero', 1: 'one'}, 'one') => 1
+     key({0: 'zero', 1: 'one'}, 'two') => None
+  '''
+  for k, val in d.items():
+      if val == v:
+          return k
+  return None
