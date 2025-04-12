@@ -258,5 +258,82 @@ def my_max(L: list[int|float]|list[str]) -> int|float|str:
   ##YOUR CODE GOES HERE
   pass
 
- 
+# Write the body of a function most_ending_digit(L) that consumes a non-empty list of natural numbers L and returns the single
+# digit that occurs most frequently at the end of the numbers in the list. The function returns the smallest digit in the case of a tie. Do not mutate the passed parameter.
 
+ def most_ending_digit(L: list[int]) -> int:
+  '''
+  Returns the single digit that occurs most frequently
+  as the last digit of numbers in L. Returns the 
+  smallest in the case of a tie.
+  
+  Requires: 
+     len(L) > 0
+     L[i] >= 0 for all indices i
+  
+  Examples:
+     most_ending_digit([1,2,3]) => 1
+     most_ending_digit([105, 201, 333, 
+                        995, 9, 87, 10]) => 5
+  '''
+  counts = [0] * 10 # One slot for each digit 0 through 9
+  for num in L:
+      last_digit = num % 10
+      counts[last_digit] += 1
+
+  max_count = max(counts)
+  for digit in range(10):
+    if counts[digit] == max_count:
+          return digit
+
+#
+Write the body of a function record_digits(s) which consumes a string and returns a tuple of 10 integers where the value at each index of the list
+# from 0 to 9 represents the number of times the digit appears in the string. Use abstract list functions
+
+def record_digits(s: str) -> tuple[int, int, int, int, int,
+                                   int, int, int, int, int]:
+  '''
+  Returns a list of 10 numbers corresponding to the 
+  number of occurrences of each digit in the string s
+  
+  Examples:
+     record_digits("") => (0, 0, 0, 0, 0, 
+                           0, 0, 0, 0, 0)
+     record_digits("banana") => (0, 0, 0, 0, 0, 
+                                 0, 0, 0, 0, 0)
+     record_digits("34298465fsdf3") => (0, 0, 1, 2, 2, 
+                                        1, 1, 0, 1, 1)
+  '''
+  digits = list(filter(str.isdigit, s))
+    
+  return tuple(
+      map(lambda d: sum(1 for ch in digits if ch == str(d)), range(10))
+    )
+# Write a function mult_table(n) that consumes a natural number n and returns the n+1 by n+1 multiplication table (where each entry in the inner list is equal
+# to the product of which list it is and the inner list position number, or in other words, the product of the row and column numbers). Use abstract list functions.
+def mult_table(n: int) -> list[list[int]]:
+    '''
+    Returns the n+1 by n+1 multiplication table
+    
+    Requires: n >= 0
+    
+    Examples: 
+       mult_table(0) => [[0]]
+       mult_table(1) => [[0, 0], 
+                         [0, 1]]
+       mult_table(2) => [[0, 0, 0], 
+                         [0, 1, 2],
+                         [0, 2, 4]]
+       mult_table(5) => [[0, 0, 0, 0, 0, 0], 
+                         [0, 1, 2, 3, 4, 5],
+                         [0, 2, 4, 6, 8, 10],
+                         [0, 3, 6, 9, 12, 15],
+                         [0, 4, 8, 12, 16, 20],
+                         [0, 5, 10, 15, 20, 25]]
+    '''    
+    return list(
+        map(lambda i:
+            list(map(lambda j: i * j, range(n + 1))),
+            range(n + 1)
+        )
+    )
