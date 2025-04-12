@@ -65,4 +65,17 @@ def contains_consecutive_k_palindrome(s: str, k: int) -> bool:
           return True 
 
   return False  
+# Write a function two_ending_cubes(a, b) that consumes two integers and returns a set consisting of 
+# all integers between the two values (including endpoints) where the cubes of those integers end with a 2 (that is, values x where x*x*x ends with a 2).
+# Note that if a > b, you should return the empty set.
+def two_ending_cubes(a: int, b: int) -> set[int]:
+  '''
+  Returns a set of all cubes ending with a 2 between a and b inclusive
   
+  Examples:
+     two_ending_cubes(0, 0) -> set({})
+     two_ending_cubes(-8, 9) -> {8, -8}
+  '''
+  if a > b:
+      return set()
+  return set(filter(lambda x: str(x ** 3)[-1] == '2', range(a, b + 1)))
