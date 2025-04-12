@@ -337,3 +337,18 @@ def mult_table(n: int) -> list[list[int]]:
             range(n + 1)
         )
     )
+#Write a function add_a(L) that consumes a list of strings and returns a list of all strings beginning with a in the relative order as they appeared in L. 
+# Use list/set/dictionary comprehension. Do not use looping or abstract list functions.
+
+def add_a(L: list[str]):
+  '''
+  Returns a new list consisting of all strings in L that begin with 
+  the letter a.  Elements should be returned respecting their 
+  relative order in L.
+  
+  Examples:
+     add_a([]) => []
+     add_a(["apricot", "apple", "banana", "avocado"]) 
+       =>  ["apricot", "apple", "avocado"])
+  '''
+  return [s for s in L if s.startswith('a')]
