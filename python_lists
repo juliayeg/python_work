@@ -371,5 +371,18 @@ def multi_purpose(L: list[int]) -> int:
     # Return the sum of the smallest and largest elements
     return smallest + largest
 
+#Write a function equidigital(m, n) that consumes two non-negative integers and returns True if the same digits appear in m and n and False otherwise.
+def equidigital(m: int, n: int) -> bool:
+  '''
+  Returns True if m and n contain the same digits and False otherwise.
+  
+  Requires: m, n > 0
+  
+  Examples:
+     equidigital(0, 0) => True
+     equidigital(111111112222111, 21) => True
+     equidigital(123, 432) => False
+  '''
+  return set(str(m)) == set(str(n))
  
 
