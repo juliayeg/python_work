@@ -352,3 +352,42 @@ def add_a(L: list[str]):
        =>  ["apricot", "apple", "avocado"])
   '''
   return [s for s in L if s.startswith('a')]
+
+
+ # Write a function sums(lol) that consumes a list of lists of integers in lol, returns None and mutates the list lol so that each entry is the sum of the elements in the inner list.
+def make_list(n: int) -> list[str]:
+  '''
+  Returns the list of strings formed by in position n, 
+  repeating n a total of n times
+  
+  Requires: n >= 0
+  
+  Examples:
+     make_list(0) => ['']
+     make_list(3) => ['', '1', '22', '333']
+  '''
+  return ['' if i == 0 else str(i) * i for i in range(n + 1)] 
+
+# Write a function sums(lol) that consumes a list of lists of integers in lol, returns None and mutates the list lol so that each entry is the sum of the elements in the inner list.
+def sums(lol: list[list[int]]) -> None:
+  '''
+  Mutates lol so that each element is replaced by 
+  the sum of the inner list
+  
+  Effects: Mutates lol
+    
+  Examples: 
+     If L = [] then
+     sums(L) => None
+     and L is unchanged
+     
+     If L = [[]] then
+     sums(L) => None
+     and L is mutated to [0]
+     
+     If L = [[1, 2], [], [7, 8, 9, 10]] then
+     sums(L) => None
+     and L is mutated to [3, 0, 34]
+    '''
+  for i in range(len(lol)):
+    lol[i] = sum(lol[i])
