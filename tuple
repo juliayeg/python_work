@@ -110,3 +110,18 @@ import check
 check.expect("t1",even_product((2, 3, 4, 5, 6, 7, 8)),384)
 check.expect("t2",even_product(()),1)
 check.expect("t3",even_product((11,2)),2)
+#Write a function tuple_sort(L) that consumes a list of tuples of triples of integers and returns a sorted list of triples
+# of integers according to the largest median value with ties broken by largest product and final ties broken by original order.
+# Recall that the median of a list/tuple of numbers is the middle value when the values are sorted (or the average of middle values in cases when there are an even number of values).
+def tuple_sort(L: list[tuple[int, int, int]]) \
+                -> list[tuple[int, int, int]]:
+  """
+  Returns a new list of triples sorted by largest median value
+  with ties broken by largest product.
+  
+  Examples:
+     tuple_sort([]) => []
+     tuple_sort([(1,2,3)]) => [(1,2,3)]
+     tuple_sort([(1,2,3), (6,2,5)]) => [(6,2,5), (1,2,3)]
+  """
+  return sorted(L, key=lambda t: (sorted(t)[1], t[0] * t[1] * t[2]), reverse=True)
