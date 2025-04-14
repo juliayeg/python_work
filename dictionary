@@ -21,3 +21,128 @@ def key(d: dict[X, Any], v: Any) -> X|None:
       if val == v:
           return k
   return None
+
+# Write a function convert_to_letter_grade(lon) which consumes a list of natural numbers between 0 and 100 inclusive and returns a list of the same size with all 
+# numbers converted to letters based on the following scale:
+# 80-100: A
+# 70-79: B
+# 60-69: C
+# 50-59: D
+# < 50: F
+# Use abstract list functions. (Looping is prohibited).
+def convert_to_letter_grade(lon: list[int]) -> list[str]:
+  '''
+  Returns a new list where each value in lon
+  is replaced by a letter grade
+  
+  Requires: 0 <= L[i] <= 100 for each 0 <= i <= len(L)
+  
+  Examples:
+     convert_to_letter_grade([]) => []
+     convert_to_letter_grade([0]) => ['F']
+     convert_to_letter_grade([49, 59, 69, 79, 89]) 
+        => ['F', 'D', 'C', 'B', 'A']
+  '''
+  return list(map(lambda n: 
+                    'A' if n >= 80 else
+                    'B' if n >= 70 else
+                    'C' if n >= 60 else
+                    'D' if n >= 50 else
+                    'F', lon))
+
+
+#Write a function non_inc(L) which consumes a list of integers L and returns true if the list is non-increasing 
+#(That is, no element is followed by a larger value) and false otherwise. Use abstract list functions.
+def non_inc(L: list[int]) -> bool:
+  '''
+  Returns True if the list L is non-increasing
+  and False otherwise
+  
+  Examples:
+     non_inc([]) => True
+     non_inc([1]) => True
+     non_inc([1, -1]) => True
+     non_inc([1, 1]) => True
+     non_inc([1, 2, 1]) => False
+  '''
+  return all(x >= y for x, y in zip(L, L[1:]))
+
+#Write the body of a function vowel_sort(los) that consumes a list of strings in los and mutates the list so that the elements are sorted in increasing order of the number of vowels
+#("aeiou" or the upper case equivalents) in the string. Tie breaker should be the original order in the original list.
+def vowel_sort(los: list[str]) -> None:
+  """
+  Mutates the list los so that the elements are sorted in 
+  increasing order of the number of vowels (either upper
+  or lower case) in the string.
+  
+  Effects: Mutates los
+  
+  Examples:
+     If L = [] then
+     vowel_sort(L) => None
+     and L is unchanged
+  
+     If L = ['aaa', 'adt', 'ab', 'aziubapiqulwerknii', 'eeeeee'] then
+     vowel_sort(L) => None
+     and L is mutated to ['adt', 'ab', 'aaa', 'eeeeee', 'aziubapiqulwerknii']
+     
+     If L = ['dog', 'cat', 'fish', 'yyz', 'tuna', 'elephant'] then
+     vowel_sort(L) => None
+     and L is mutated to ['yyz', 'dog', 'cat', 'fish', 'tuna', 'elephant']
+  """
+  vowels = set('aeiouAEIOU')
+  los.sort(key=lambda s: sum(1 for c in s if c in vowels))
+#Write the body of a function length_alphabetic_sort(los) that consumes a list of strings in los and returns a new list so 
+#that the elements are sorted in decreasing order of length with ties broken by increasing alphabetic order
+def length_alphabetic_sort(los: list[str]) -> list[str]: 
+  """
+  Returns a new list so that the elements of los are sorted 
+  in decreasing order of length with ties broken by 
+  increasing alphabetic order
+  
+  Examples:
+     length_alphabetic_sort([]) => []
+     length_alphabetic_sort(['apple', 'banana', 'anana']) 
+        => ['banana', 'anana', 'apple']
+  """
+  return sorted(los, key=lambda s: (-len(s), s))
+#Write a function odd_dictionary(n) which consumes a non-negative integer n and returns a dictionary consisting of all key pairs i:2*i+1 where i is between 0 and n.
+def odd_dictionary(n: int) -> dict[int, int]:
+  '''
+  Returns a dictionary where each key:value pair
+  is of the form i:2*i+1
+  
+  Requires: 0 <= n
+  
+  Examples:
+     odd_dictionary(0) => {0:1}
+     odd_dictionary(2) => {0:1, 1:3, 2:5}
+  '''
+  return {i: 2*i + 1 for i in range(n+1)}
+#Write a function transponse(L) which consumes a list of list of integers where each inner list has the same size and produces the transpose of the two-dimensional list.
+#The transpose of a two dimensional list L is defined as the two dimensional
+#list M given by M[i][j] = L[j][i] for all indices 0 <= j <= len(L) and 0 <= i <= len(L[0]). Note: If you've read ahead a bit, don't use zip for this problem.
+def transpose(L: list[list[int]]) -> list[list[int]]:
+    '''
+    Returns the transpose of L
+    
+    Requires: len(L[i]) are equal for all 0 <= i < len(L)
+    
+    Examples:
+       transpose([]) => []
+       transpose([[1]]) => [[1]]
+       transpose([[1, 2], [3, 4]]) => [[1, 3], [2, 4]]
+    '''
+    # Initialize an empty list to store the result
+    M = []
+    
+    # Iterate through the columns of L (based on length of L[0])
+    for j in range(len(L[0])):
+        # Create a new row by extracting the j-th element from each row in L
+        new_row = []
+        for i in range(len(L)):
+            new_row.append(L[i][j])
+        # Append the new row to M
+        M.append(new_row)
+    
+    return M
