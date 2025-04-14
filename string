@@ -79,3 +79,57 @@ def two_ending_cubes(a: int, b: int) -> set[int]:
   if a > b:
       return set()
   return set(filter(lambda x: str(x ** 3)[-1] == '2', range(a, b + 1)))
+
+#Write the body of a function a_phobic(s) that consumes a string s and returns a string that is s except with all 'a'
+# characters removed (other characters should stay in the same order) and if the number of removed 'a' characters was even, it also adds a "!" to the end of the string.
+def a_phobic(s: str) -> str:
+  '''
+  Returns s without 'a's and if the number of 'a's removed was even,
+  we also append a '!' character.
+  
+  Examples:
+     a_phobic("") => "!"
+     a_phobic("bananab") => "bnnb"
+  '''
+  result = ""
+  a_removed = 0
+    
+  for ch in s:
+      if ch == 'a':
+          a_removed += 1
+      else:
+          result += ch
+  if a_removed % 2 == 0:
+      result += "!"
+  return result
+
+#Write a one-line return statement that given a number n produces the sum of the digits of n.
+def one_liner(n: int) -> int:
+  '''
+  Returns the sum of digits using one line of code
+  
+  Requires: n >= 0
+  
+  Examples:
+     one_liner(0) => 0
+     one_liner(114) => 6
+  '''
+  return sum(int(d) for d in str(n))
+
+# A binary string is a string that only contains the characters "0" and/or "1". Such a string is called equinumerous if it contains the same number of "0"s and "1"s.
+def one_liner(n: int) -> int:
+#Write the body of a function equinumerous(s) that consumes a binary string s and returns True if the string is equinumerous and False otherwise. 
+#Your solution should use a dictionary and pass through the digits only once. The methods countor replace are forbidden.
+def equinumerous(s: str) -> bool:
+  '''
+  Returns True if s is equinumerous and False otherwise.
+  
+  Examples:
+     equinumerous("0") => False
+     equinumerous("1010") => True
+  '''
+  counts = {'0': 0, '1': 0}
+  for ch in s:
+      if ch in counts:
+          counts[ch] += 1
+  return counts['0'] == counts['1']
